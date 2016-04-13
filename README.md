@@ -12,8 +12,11 @@ copycat alignments.sorted.bam genome_file output_prefix
   - Remember to filter for mapping quality first if desired: \n\tsamtools view -q -b BAM.bam > FILTERED_BAM.bam
 
 - genome_file:
-  - The genome file should be structured as chromosome_name<tab>chromosome_size\n\tFor example:\n\tchr1\t249250621\n\tchr2\t243199373
+  - The genome file should be structured as chromosome_name\<tab\>chromosome_size
+  - For example:
+  - chr1\t249250621
+  - chr2\t243199373
 
-- output_prefix
+- output_prefix:
   - Prefix for all output files. Output files will be output_prefix.coverage, output_prefix.coverage.10kb, output_prefix.coverage.10kb.csv, output_prefix.coverage.10kb.for_IGV.seg
 
