@@ -41,14 +41,12 @@ BAM=${1?"$USAGE"}
 GENOME_FILE=${2?"$USAGE"}
 OUT=${3?"$USAGE"}
 
-# getting coverage for every basepair in the genome
-bedtools genomecov -d -ibam $BAM -g $GENOME_FILE > $OUT.coverage
-
-# making 10kb bins on the coverage
-awk 'BEGIN{num=10000;sum=0;possum=0}{if(NR!=1){if(possum==10000 || chrom!=$1){print chrom,pos,sum/possum,possum;sum=0;possum=0;}}{sum+=$3;pos=$2;chrom=$1;possum+=1;}}' OFS="\t" $OUT.coverage > $OUT.coverage.10kb
+# getting coverage for every basepair in the genome and making 10kb bins on the coverage
+bedtools genomecov -d -ibam $BAM -g $GENOME_FILE | awk 'BEGIN{num=10000;sum=0;possum=0}{if(NR!=1){if(possum==10000 || chrom!=$1){print chrom,pos,sum/possum,possum;sum=0;possum=0;}}{sum+=$3;pos=$2;chrom=$1;possum+=1;}}' OFS="\t" > $OUT.coverage.10kb
 
 # Create a .csv file:
 awk 'BEGIN{start=0;print "chromosome,start,end,unsegmented_coverage"}{if(chrom!=$1){start=0}; print $1,start,$2,$3;start=$2;chrom=$1}' OFS="," $OUT.coverage.10kb > $OUT.coverage.10kb.csv
+gzip $OUT.coverage.10kb.csv
 
 # Create a .seg file for viewing in IGV
 awk 'BEGIN{start=0}{if(chrom!=$1){start=0}; print "Coverage",$1,start,$2,$3;start=$2;chrom=$1}' OFS="\t" $OUT.coverage.10kb > $OUT.coverage.10kb.for_IGV.seg
