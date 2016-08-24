@@ -11,7 +11,7 @@ copycat alignments.sorted.bam genome_file output_prefix
 \n\tThe genome file should be structured as chromosome_name<TAB>chromosome_size\n\tFor example:\n\tchr1\t249250621\n\tchr2\t243199373
 
 \n\noutput_prefix
-\n\tPrefix for all output files. Output files will be output_prefix.coverage, output_prefix.coverage.10kb, output_prefix.coverage.10kb.csv, output_prefix.coverage.10kb.for_IGV.seg
+\n\tPrefix for all output files. Output files will be output_prefix.coverage.10kb, output_prefix.coverage.10kb.csv, output_prefix.coverage.10kb.for_IGV.seg
 "
 
 

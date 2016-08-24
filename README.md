@@ -19,5 +19,4 @@ chr1    249250621
 chr2    243199373
 ```
 - output_prefix:
-  - Prefix for all output files. Output files will be output_prefix.coverage, output_prefix.coverage.10kb, output_prefix.coverage.10kb.csv, output_prefix.coverage.10kb.for_IGV.seg
-
+  - Prefix for all output files. Output files will be output_prefix.coverage.10kb, output_prefix.coverage.10kb.csv, output_prefix.coverage.10kb.for_IGV.seg
